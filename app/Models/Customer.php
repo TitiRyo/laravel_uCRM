@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Purchase;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
@@ -30,4 +32,13 @@ class Customer extends Model
             }
         }
     }
+
+    //Customer側
+    //購入者1人に対して購入履歴が複数見れるため１対多の関係になるので、そのためにリレーションを行う
+    //複数の購買情報を見れるように複数形にしておく
+    public function purchases() {
+        // HasManyの中にmodelの情報を書いてあげる
+        return $this->hasMany(Purchase::class);
+    }
+
 }

@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         //attachで中間テーブルに登録することができる　purchase_idは自動で登録できるのでその他を記述していく
 
         $items = Item::all();
-        Purchase::factory(100)->create()
+        Purchase::factory(30000)->create()
         ->each(function (Purchase $purchase) use ($items) {
             $purchase->items()->attach($items->random(rand(1, 3))->pluck('id')->toArray(), ['quantity' => rand(1, 5)]);
         });
